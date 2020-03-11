@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Card{% endblock %}
+
+{% block body %}
+    <h3 style="text-align: center">Creation d'une carte chacal</h3>
+    {{ form_start(form, {'action': path(app.request.attributes.get('_route')), 'method': 'POST', 'enctype':'multipart/form-data'}) }}
+    {{ form_end(form) }}
+{% endblock %}
+

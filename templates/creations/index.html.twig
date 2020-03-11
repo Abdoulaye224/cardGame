@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class = "toggle"></div>
+            <div class = "toggle"></div>
+            <div class = "toggle"></div>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/user">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link create-card-link" >Create Card</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link create-category-link">Create Category</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a href = "/logout" class = "deco">Log Out</a>
+            </form>
+        </div>
+    </nav>
+    {% block javascripts %}
+
+        <script>
+            $(document).ready(function(){
+
+                $(".create-card-link").click(function(){
+                    $.ajax({url: "/card-creat", success: function(result){
+                            $("Container").html(result);
+                        }});
+                });
+                $(".create-category-link").click(function(){
+                    $.ajax({url: "/category-create", success: function(result){
+                            $("Container").html(result);
+                        }});
+                });
+            });
+        </script>
+    {% endblock %}
+
+{% endblock %}
