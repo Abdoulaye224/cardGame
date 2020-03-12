@@ -13,7 +13,7 @@ Pour exécuter le projet, vous devrez vérifier les exigences de votre machine l
 - composer
 ``, ou tout simplement Symfony5 et au moins la version 7.2 de PHP pour ceux qui n'aiment pas Docker 😜
 ``
-### Pour ceux qui n'utilisent pas Docker :
+###Pour ceux qui n'utilisent pas Docker :
 
 vous n'avez qu'à extraire les fichiers/dossiers après avoir cloner le projet lancer l'application en local. Le travail ne devrait
 pas être compliqué pour vous normalement.
