@@ -3,8 +3,13 @@
 {% block title %}Create Card{% endblock %}
 
 {% block body %}
-    <h3 style="text-align: center">Creation d'une carte chacal</h3>
+<main role="main" class="container">
+
+    <div class="starter-template" style="margin-top:100px; text-align:center">
+        <h1>Carte create</h1>
+    </div>
     {{ form_start(form, {'action': path(app.request.attributes.get('_route')), 'method': 'POST', 'enctype':'multipart/form-data'}) }}
     {{ form_end(form) }}
+</main>
 {% endblock %}
 

@@ -3,8 +3,13 @@
 {% block title %}Create Card{% endblock %}
 
 {% block body %}
-    <h3 style="text-align: center">Creation d'une catégorie chacal</h3>
-    {{ form_start(form, {'action': path(app.request.attributes.get('_route')), 'method': 'POST'}) }}
+<main role="main" class="container">
+
+    <div class="starter-template" style="margin-top:100px; text-align:center">
+        <h1>Creation d'une catégorie</h1>
+    </div>
+{{ form_start(form, {'action': path(app.request.attributes.get('_route')), 'method': 'POST'}) }}
     {{ form_end(form) }}
+</main>
 {% endblock %}
 

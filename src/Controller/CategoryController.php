@@ -6,6 +6,8 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,4 +65,58 @@ class CategoryController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/delete-bis/{id}", name="category_delete_bis")
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function deleteBis(string $id, EntityManagerInterface $entityManager)
+    {
+        $category = $this->categoryRepository->find($id);
+        $entityManager->remove($category);
+        $entityManager->flush();
+        $this->addFlash('danger', "La categorie a bien été supprimée");
+
+        return $this->redirectToRoute('list');
+    }
+
+    /**
+     * @Route("/deleteCategory/{id}", name="category_delete")
+     * @ParamConverter("Category", options={"mapping"={"id"="id"}})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function delete(Category $category, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($category);
+        $entityManager->flush();
+
+        $this->addFlash('danger', "La categorie a bien été supprimée");
+
+        return $this->redirectToRoute('list');
+    }
+
+    /**
+     * @Route("/editCategory/{id}", name="category_edit")
+     * @ParamConverter("Category", options={"mapping"={"id"="id"}})
+     * @IsGranted("ROLE_ADMIN")
+     */
+    public function update(Request $request, Category $category)
+    {
+        $form = $this->createForm(CategoryType::class, $category);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->entityManager->persist($category);
+            $this->entityManager->flush();
+            $this->addFlash('warning', "La categorie a bien été modifiée");
+
+            return $this->redirectToRoute('list');
+        }
+        return $this->render('category/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
 }

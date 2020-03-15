@@ -8,8 +8,21 @@
         .example-wrapper code { background: #F5F5F5; padding: 6px 10px; }
         .example-wrapper table td {padding: 10px; margin: 10px; text-decoration: none;}
         .example-wrapper table td a {text-decoration: none;}
+        body{
+           background: url('bg.jpg') !important;
+        }
     </style>
-    {% include 'layout/test.html.twig'%}
+    {% include 'layout/navbar.html.twig'%}
 
-    <h2>Home Page </h2>
-{% endblock %}
+    <main role="main" class="container">
+
+        <div class="starter-template" style="margin-top:100px; text-align:center">
+            <h1>H O M E P A G E</h1>
+        </div>
+
+        <h1>Vous êtes connecté</h1>
+        <br>
+        {% if app.user is defined %}
+            <h2>Bonjour {{ app.user.firstName }}</h2>
+        {% endif %}
+    </main>{% endblock %}

@@ -16,16 +16,16 @@
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="{{''}}">Home <span class="sr-only">(current)</span></a>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a href="{{ path('app_logout') }}" class=" nav-item nav-link">Déconnexion</a>
+                <a href="{{ path('app_logout') }}" class=" nav-item ml-auto nav-link">Déconnexion</a>
                 {% else %}
-                    <a href="{{ path('app_login') }}" class="nav-item nav-link">Se_connecter</a>
+                    <a href="{{ path('app_login') }}" class="nav-item ml-auto nav-link">Se_connecter</a>
                 {% endif %}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% if is_granted('ROLE_USER') %}
-                        <a href="{{ path('profile') }}" class="nav-item nav-link ">Votre profil</a>
+                        <a href="{{ path('profile') }}" class="nav-item ml-auto nav-link ">Votre profil</a>
                     {% endif %}
                 {% else %}
-                    <a href="{{ path('user-create') }}" class="nav-item nav-link">Créer un compte</a>
+                    <a href="{{ path('user-create') }}" class="nav-item ml-auto nav-link">Créer un compte</a>
                 {% endif %}
     </div>
     </div>

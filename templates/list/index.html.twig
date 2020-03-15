@@ -39,10 +39,10 @@
             <a class="nav-link" id="cat-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="contact" aria-selected="false">Liste des categories</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link container-create" id="createCard-tab" data-toggle="tab" href="#card" role="tab" aria-controls="contact" aria-selected="false">Create card</a>
+            <a class="nav-link container-create" id="createCard-tab" data-toggle="tab" href="#card" role="tab" aria-controls="contact" aria-selected="false">création de cartes</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link container-category" id="createCat-tab" data-toggle="tab" href="#category" role="tab" aria-controls="contact" aria-selected="false">Create category</a>
+            <a class="nav-link container-category" id="createCat-tab" data-toggle="tab" href="#category" role="tab" aria-controls="contact" aria-selected="false">création de catégories</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
@@ -57,7 +57,9 @@
                             <th> nom </th>
                             <th> email </th>
                             <th> date de naissance </th>
+                            {% if is_granted("ROLE_ADMIN") %}
                             <th>Action </th>
+                            {% endif %}
                             <!--  <th colspan="3"> Action</th> -->
                         </tr>
                         </thead>
@@ -68,8 +70,10 @@
                                 <td>{{ user.email }}</td>
                                 <td>{{ user.birthDate|date('d F Y') }}</td>
                                     <td>
-                                    <a class="btn btn-warning" href="{{ path('user_edit', {'id': user.id}) }}" style="">Editer</a>
+                                        {% if is_granted("ROLE_ADMIN") %}
+                                        <a class="btn btn-info" href="{{ path('user_edit', {'id': user.id}) }}" style="">Editer</a>
                                     <a class="btn btn-danger" href="{{ path('user_delete', {'id': user.id}) }}" style="">Supprimer</a>
+                                        {% endif %}
                                     </td>
                             </tr>
                         {% endfor %}
@@ -110,10 +114,12 @@
                                             <span style="font-weight:bold;"><td>{{ card.getUser.lastName|upper }}</td></span>
                                         {% endif %}</small>
                                 </div>
+                                {% if is_granted("ROLE_ADMIN") %}
                                 <div class="card-footer" style="text-align: center;">
                                     <a href="{{ path('card_edit', {'id': card.id}) }}" class="btn btn-info">Editer</a>
                                     <a href="{{ path('card_delete', {'id': card.id}) }}" class="btn btn-danger">Supprimer</a>
                                 </div>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}
@@ -137,10 +143,15 @@
                             <tr>
                                 <td>{{ cat.id }} </td>
                                 <td>{{ cat.name|upper }}</td>
+                                <td>
+                                    {% if is_granted("ROLE_ADMIN") %}
+                                    <a href="{{ path('category_edit', {'id': cat.id}) }}" class="btn btn-info">Editer</a>
+                                        <a href="{{ path('category_delete', {'id': cat.id}) }}" class="btn btn-danger">Supprimer</a>
+                                    {% endif %}
+                                </td>
                             </tr>
                         {% endfor %}
                     </table>
-                    <a href="{{ path('category-create') }}"> Créer un nouvelle categorie </a>
                 </div>
             </div>
         </div>

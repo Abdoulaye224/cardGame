@@ -80,7 +80,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('login');
 
         }
-        return $this->render('creations/index.html.twig', [
+        return $this->render('user/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -94,7 +94,7 @@ class UserController extends AbstractController
         $user = $this->userRepository->find($id);
         $entityManager->remove($user);
         $entityManager->flush();
-        $this->addFlash('notice', "L'utilisateur a bien été supprimé");
+        $this->addFlash('danger', "L'utilisateur a bien été supprimé");
 
         return $this->redirectToRoute('list');
     }
