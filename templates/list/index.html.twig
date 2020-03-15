@@ -92,24 +92,29 @@
                     {% for card in cardList  %}
                         <div class="col-4-lg ml-3">
                             <div class="card" style="width: 18rem;">
-                                <div class="cardImage"  style="height: 200px;">
-                                    <img class="card-img-top"  style="width: 100%; height: 100%;" src="
-        {% if card.image is not empty %}
-            {{ asset('uploads/cards/' ~ card.image) }}
-        {% else %}
-            {{ 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHAAowMBIgACEQEDEQH/xAAbAAACAgMBAAAAAAAAAAAAAAAEBQMGAAIHAf/EADQQAAIBAwMCBAMGBwEBAAAAAAECAwAEEQUSITFBBhMiURRhgTJxkaGx0QcjQkNSwfAVM//EABoBAAIDAQEAAAAAAAAAAAAAAAIDAAEEBQb/xAAjEQACAgMAAgICAwAAAAAAAAAAAQIRAxIhBBMxQSNRFDIz/9oADAMBAAIRAxEAPwCg7jisRuSK9CHFa7SrUvgwnU1jGvFrCCajIa5rdTXgjJqVYjQ2EkaA81IozWwt37UTDaSHjH5UDmkWgdY6kCAUalnJjJU498VhtHIICnPyFB7EXQHgCvMZNFyWjqOQfwqJYHJ4DH6VNkUQ7KwjFECB8Z2nHvivDCT2qbIgHIBUDDmjWtmY968+Db50SmgQIrUTDHSmRsm+dQy2jL0FEpolAkanNExx962jt37iio7ZyOhoZzRdMgxWUT8K/tWUr2E1Zp8IccCtPgWJ6flVmW0TuK3W1TP2az/yxvrbK5HprMen5USmlH2/KrHHbADgVIYMdqXLzGT1FcXTD7UVaaYTKBtye1Okti7YAppYad6wXXgEc+1LflMP10hRqR0Gw1FLC6tZY5FVfNnhbcNxUH7H17Gn9n4bt7mMS2MkU9u6nDoeh/eqP/Ee1ktvEskhkJEqI4IbjO0A9fuorw9qGoWVtKWUqmATzw3bI+ddZYIzSZnbouq+EnZADIhY8hT7dKlj8HLEwZ7mMjqeepqrv4okhjVWm3nkZTjIGfzqCPxPJlGJLfZ/qx70S8TGDtItc/hQsQzGEovUlh+NINdbStLkEZQXkwH/AMw2EVu5Yjr91QDX7i8YQJcDzH4BOMDryKqmrRXc915XlMMnv1arWCES1bZaLlo9QsbSeKCOEPGwZIs7chiMig/ggP6atKaOLDRrCBlYFYATkdCcsf1oI2/NcbPmaytGiGNNCRbNf8a9+DH+NORbc9K2a24pHvdhLGhMLNf8ailsFP8ATTkQEH5V6ICT0o1mkF60JI7BR/TU62igY2imxg2nBFaPFgVHlbLUEKjajPSsphtFZQ7MvRETjmvY1yanlhwa3t4SSD2oZOh/KJoYcgVI0QNTxJgCt/LOazuXRKZ5ZW46kU4tYtrrgZoO1TtTazX1AcGri7aAm+FA/iYEllKAO5EgyAMllwOP+9qq9xfF4hbwKyQKegNXb+Jq3NrLbXKSL5bjaFb+k1TmSzljVTcKHK+rPQdzXr8auCZhsSSXAUxFjuAbn5ii55/Lt2kIHJIVfYmirbTbW4lRY5RJIrHcjHDMmDnApvonh973TWkePdscjpycqR+tF8FWVmC5K7dhPm7Mgex+dNYpG1GW13wmSRJBlgcHFRLb2PmRbJS7oir/ACVJUv0PP30TZfztStIIEeOTzQuGXG/mqkgkzrOq+W9nbYdldYVyjduKRLF5jcVZtcR1RU2elEC7sdeKS28WDzXl/LmvfI04/wChELaopYiv3UzMdB3YwKQmmHEA24rZRzWDk1Micio5UNN/hi6eojNCy2x5BPNN41ymaDvBj5VakArsVNAQTxXlF5FZRbB0Q7d2Samj2qBQSzEJjpW/mnj3zQztkXRihzzUykUKrbYx71qJsCkNMoYRMAac6bjG4nkVWoZcmnFlOdpFHh/0VisnwAeK2TVUfTVcLK6+gkZw1c1WF9NtzDNEzs26KVQMHB44/OrfqkhGvI/2QpGTntVk1zSbe8tUuBEA5H2h1r2iWsEc++lD8K+Eb25vk1Brhokt3Eo8xAC/GCDz7V0byLVIJobN4ommGIyGGMkYzj/u1V8TtbaTLBDG3BPmbDyw9qoGnyXkWtRKtxdtbQyB4ogoByDnBOOlA8gajaGGq+EpvC08UkRe7WJV8vOAOOmcdcVYv4feHRq9/Fq16XBsm3YGPVJnODR2pNHqrW0eoBsL9obuT7Amr/osNvBp0MdqgSJRwooXPZ0SqQt1a7L+nb7jOaUrU+vyeRdlCpUdRnvSsXY9xXkvKU5ZpNm3GlqMGkwtL7l9xrDchhUcjAjNKphLhEuM1OjYxQgkG7AqR32qBirphjKOT05FCXDbic15BJ6OtZIpIyBmh6CD8V7WEH/E1lFYViUzAHFTBwcGkk87ZBB6VtBfEJhzXQeF1wR7dXTLILhWQcj8aFM+ZMA0na+AOAayK73vjNCsDBeX9D+OUqwxzRR1eCxCmdxvPSMHmkMd20b561pDpUVzqPxUjuSR9n2rT4eHD7E8gGTJKuDFwL2dZCCCWGRmujrbg2CLgYC8kVzDTZEuNditSSiM4BIrroQCJVToBgV6PJ8UZEcs8U3P/muZImAwTx3PWqdDrc7NO+1codyso5Iz0rov8RdMZ4DLt3BQe1cyaxaKEBR6pKwzVM0RfBlpV3d6nfRxGR8M/JB6j9+a7Zo91bw28NqvpdVAIPJz8zXOvBWhG3txdzDLEcD5U1ivZItVym/h+MjuabGHLFylfBt45Eomgf8AtFcD5HvVQEpDdavHjaJnt4HJ4GRj51RJPQxzXB8ulmkjRjvVE3nsDyeK2W64IJzQUkoxUe44zWbWx+/BhHL/ADA2e9F5Er4U4Pek1vIScZplaONxzVSjQUZJoO9MXArYTc0HPJjnPA6VGkxbFIeNsljUSDHQVlBLcekV5Q+uRLKXdSbNqew5NDGTsa1uphLnywQuMjPGaikJwpAOFPJr0Chww5JbSbJ8lhkGvY5Qr5oJHk3lQDg/lUlxGIdrB87sHj2q9foBDZLndzjirHo7bhlRnjnFUaOVs4GcEZ++rr4SXLM0hGxRySavFh/Ii3KosQ6dc/Da6WjHKXJBI79x+td1t5U+HiaRguVHU4rgGrSwWniMzqcREiQr74P7U717xFrJu0uoYnlRlIjdDkMh/SulPIlxlRjZ1fXrT43T5okKltp4NctNnGr44LrwNw6UTp/iHV5LC5urj0xpETtdwWYDp070tuJphiRj6vtE49653k5dqUWNWNof6Zqj2iNHcYQdFcH0Y9vl9af6G9tqOpo4T1AbmPTpVLlglnVTbo0kbqNyqATn9qns9VfRZ4IbdS6zSCOVlbIRTyF+/g8+3Fall4hevS8eN3YWiHjbnPWucXF4AxWr540k86BVTAWNQZHPXJHCj545/D3rmV15fm4jJbPeud5EIyyuw1JqIXv83hetRl5kzkcVkLrFG/qCkDPPGT7UUs0c6mRBuTuR2rO+FpWBi5eMg44oxLwHBBwRQcqH1gLn2xQUjuuAoPHBotFIik4jp9Q3KQWzU8UzLGGH0pNGu6JnZtu3qKkju28oqDnFU8X6C2d2xuLpcerrWUuDcck/SspehNmKJndoIo3j2xp6I2YYyKAVJGDIvmZB4x0P0+tG205WBrO4kJtgcpgepR/sfLOeuPYwkq0n8uQI2/C5JH3kH24rprgl9fCOEyoCQuCRtBZa2kjEphEknl4XoeefaiCsaQ83Dy4O4KRwDxk/WgNQLySKEYbRjjPFRdZT4SOVgnDJnPQirTp0k0VlBJAQ8bpLLIGOB6Fzwfr+VVCdBvAkVsE8le1ODJPFZq0ZyVQxjjnaRg9P+4otlGmDVgOqWU4uyZOdys24ewou+1DyfJtJRloYVjXnr86L1SSSRIZEyrFCCR7HtQfw1pOQF3eaQpO87j0HFB7t43IY0vogivFignjuGkMm8CPDHb1ouG9ae0JllZnBILf4nP5gioLy2h/9KIxbgPtMD0P3fiK0aM2s7CHcd/HI46d/oaFqMiKTQ/0m9Y3kRlYohfkZ7D/jWSxRR3txMn8y3eYSqmeCeo/3S2CVLUgN/bk3HHXjjP4/oaInDyqfKcxEkYXv17UrZx4vsJP7LlqGqxXHhmOFsfFu29skksD3H3cDHsKqCOoTyXCiRRuUgZyKlhldbJpJnYOp8leeSDk9O3H+qVxZhmBlU5Y5QAfd1NC/yO2RcJS/nysZGDrnhMdRR8QZYI1hg8tSfs4xkUMkSSws7uqKvZkB3fmMUVb38Lwr5KZRhnDD6UM064Ek66C3HLq6ltpGcLQbpMkmCrEdcHn8acSqnlqW9AY439sUAMbFmkunj3J6QvPB7GrxyKaZA0jssxbAUjIxxxXhjiEAAlD+zDuaguph8OyxHHOM55IoSFnSD1jcck8GtMYcFN9HEdzdmNSgO3HHI/espdGYigPkTfR6yr9MS7P/2Q==' }}
-        {% endif %}" alt="Card image cap">
+                                <div class="p-3">
+                                    <div class="img"
+                                         style="background-image: url({{ asset('uploads/cards/' ~ card.image) }});"></div>
                                 </div>
 
                                 <div class="card-body">
                                     <h5 class="card-title">{{ card.title|upper }}</h5>
-                                    <div style="display: flex; text-align: center; margin-left: 33%;">
-                                        <div style="text-align: center; padding: 4px; margin-right: 20px;" id="lifePoint">{{ card.lifePoint }}</div>
-                                        <div style="text-align: center; padding: 4px;" id="attack" >{{ card.attack }}</div>
+                                    <div class="grid-3 mt-2" style="margin-left: 50px;">
+                                        <div class="card-info" style="background: #999999">
+                                            <p>{{ card.lifePoint }}</p>
+                                        </div>
+
+                                        <div class="card-info" style="background: cadetblue;">
+                                            <p>{{ card.attack }}</p>
+                                        </div>
                                     </div>
-                                    <div id="cat" style="text-align: center;">{{ card.getCategory.name|upper }}</div>
+                                    <div class="grid-3 text-center" style="margin-left: 60px;">
+                                        <p class="card-info-desc">lifePoint</p>
+                                        <p class="card-info-desc">Attack</p>
+                                    </div>
                                 </div>
-                                <div class="card-footer">
+                                <div id="cat" style="text-align: center; margin-bottom: -10px;">{{ card.getCategory.name|upper }}</div>
+                                <div class="card-footer" style="margin-bottom: -15px; margin-top: 10px;">
                                     <small class="text-muted">Carte crée par :  {% if card.getUser is not empty %}
                                             <span style="font-weight:bold;"><td>{{ card.getUser.lastName|upper }}</td></span>
                                         {% endif %}</small>
