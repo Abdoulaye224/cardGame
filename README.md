@@ -54,8 +54,9 @@ le nom et le prenom sont facultatifs. après avoir validé cette commande, on vo
 ** ** 
 ####Accès base de données
 ```
- 
+ $ winpty docker-compose exec db mysql -u username -ppassword
 ```
+Attention ! le "-p" est bien collé au mot de passe.
 ## Soutien
 
 Veuillez 
