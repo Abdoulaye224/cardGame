@@ -125,6 +125,8 @@ class DeckController extends AbstractController
         $this->manager->remove($deckCard);
         $this->manager->flush();
 
+        $this->addFlash('danger', "the card has been deleted");
+
         return new Response('true');
     }
 

@@ -32,7 +32,7 @@
                                  style="background-image: url({{ asset('uploads/cards/' ~ entity.cards.image) }});"></div>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">
+                            <h5 class="card-title" style="margin-top: -30px;">
                                 {{ entity.cards.title }}
                                 {% if entity.cards.category %}
                                     <small>
@@ -41,7 +41,7 @@
                                 {% endif %}
                             </h5>
 
-                            <div class="b-0" style="margin-left:90px;">
+                            <div class="b-0" style="margin-left:90px; margin-bottom: -40px;" >
 
                                 <div class="grid-3 mt-2" style="">
                                     <div class="card-info" style="background: #999999">
@@ -57,7 +57,11 @@
                                     <p class="card-info-desc">lifePoint</p>
                                     <p class="card-info-desc">Attack</p>
                                 </div>
+
                             </div>
+                        </div>
+                        <div class="card-footer" style="text-align: center; margin-top: 20px;">
+                            <a href="{{ path('deck_delete_card', {'id': entity.id}) }}" class="btn btn-danger">delete</a>
                         </div>
                     </div>
                 </div>
@@ -109,7 +113,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
+    <script type="text/javascript">
         $('.choice-card').on('click', function () {
             var idCard = $(this).attr('data-id');
             var idDeck = '{{ deck.id }}';
