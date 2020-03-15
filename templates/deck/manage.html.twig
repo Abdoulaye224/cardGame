@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deck manage{% endblock %}
+
+{% block body %}
+    {% include 'layout/navbar.html.twig'%}
+
+    <h3 class="mb-4">My deck</h3>
+
+    {{ form_start(form, {'action': path(app.request.attributes.get('_route'),
+        app.request.attributes.get('_route_params')), 'method': 'POST'}) }}
+    <div class="w-50 form-row">
+        <div class="col">
+            {{ form_widget(form.name) }}
+        </div>
+
+        <div class="col">
+            {{ form_row(form.submit) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    {% if deckCards is empty %}
+        <h5>Your deck is empty.</h5>
+    {% else %}
+        <div class="row">
+            {% for entity in deckCards %}
+                <div class="col-3 p-2">
+                    <div class="card bg-light no-options-card deleteCard" data-link="{{ path('deck_delete_card', {'id': entity.id}) }}">
+                        <div class="p-3">
+                            <div class="img"
+                                 style="background-image: url({{ asset('uploads/cards/' ~ entity.cards.image) }});"></div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ entity.cards.title }}
+                                {% if entity.cards.category %}
+                                    <small>
+                                        ({{ entity.cards.category.name }})
+                                    </small>
+                                {% endif %}
+                            </h5>
+
+                            <div class="b-0" style="margin-left:90px;">
+
+                                <div class="grid-3 mt-2" style="">
+                                    <div class="card-info" style="background: #999999">
+                                        <p>{{ entity.cards.lifePoint }}</p>
+                                    </div>
+
+                                    <div class="card-info"style="background: cadetblue;">
+                                        <p>{{ entity.cards.attack }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="grid-3 text-center">
+                                    <p class="card-info-desc">lifePoint</p>
+                                    <p class="card-info-desc">Attack</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <h3 class="mb-3 mt-3">Cards List <small style="margin-left: 30px;"> Click on the card to add to your deck😉</small></h3>
+
+    <div class="row">
+        {% for entity in cards %}
+            <div class="col-3 p-2">
+                <div class="card bg-light choice-card no-options-card" data-id="{{ entity.id }}">
+                    <div class="p-3">
+                        <div class="img"
+                             style="background-image: url({{ asset('uploads/cards/' ~ entity.image) }});"></div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ entity.title }}
+                            {% if entity.category %}
+                                <small>
+                                    ({{ entity.category.name }})
+                                </small>
+                            {% endif %}
+                        </h5>
+
+                        <div class="b-0" style="margin-left:90px;">
+                            <div class="grid-3 mt-2">
+                                <div class="card-info" style="background: #999999">
+                                    <p>{{ entity.lifePoint }}</p>
+                                </div>
+
+                                <div class="card-info" style="background: cadetblue;">
+                                    <p>{{ entity.attack }}</p>
+                                </div>
+                            </div>
+
+                            <div class="grid-3 text-center">
+                                <p class="card-info-desc">lifePoint</p>
+                                <p class="card-info-desc">Attack</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $('.choice-card').on('click', function () {
+            var idCard = $(this).attr('data-id');
+            var idDeck = '{{ deck.id }}';
+            $.ajax({
+                type: "POST",
+                url: "{{ path('deck_add_card') }}",
+                data: {'idDeck': idDeck, 'idCard': idCard},
+                success: function (response) {
+                    $('#pageContent').load('{{ path('deck_manage', {'id': deck.id}) }}');
+                }
+            });
+        });
+        $(document).on('click', '.deleteCard', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr('data-link'),
+                success: function (response) {
+                    $('#pageContent').load('{{ path('deck_manage', {'id': deck.id}) }}', null, () => {
+                        hideLoader();
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}

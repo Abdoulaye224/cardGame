@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deck list{% endblock %}
+
+{% block body %}
+    {% include 'layout/navbar.html.twig'%}
+    {{ parent() }}
+    <h3 class="mb-3">new deck</h3>
+
+    {{ form_start(form, {'action': path(app.request.attributes.get('_route'),
+        app.request.attributes.get('_route_params')), 'method': 'POST'}) }}
+    <div class="w-50 form-row">
+        <div class="col">
+            {{ form_widget(form.name) }}
+        </div>
+
+        <div class="col">
+            {{ form_row(form.submit) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+    <h3 class="mb-4">Your Decks List</h3>
+
+    {% if entities is empty %}
+        <h5>This list is empty.</h5>
+    {% else %}
+        <div class="row">
+            {% for entity in entities %}
+                <div class="col-3 p-1">
+                    <div class="bg-light rounded p-3">
+                        <h6>{{ entity.name }}</h6>
+                        <a href="{{ path('deck_delete', {'id': entity.id}) }}" class="btn btn-danger btnDelete"><i
+                                    class="fas fa-times">delete</i></a>
+                        <a href="{{ path('deck_manage', {'id': entity.id}) }}" class="btn btn-info btnAction"><i
+                                    class="fas fa-cog">edit</i></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

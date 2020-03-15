@@ -18,12 +18,12 @@ class UserProfileType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-            ->add('lastName', TextareaType::class, ['label' => "Nom"])
-            ->add('firstName', TextareaType::class, ['label' => "Prénom"])
+            ->add('lastName', TextareaType::class, ['label' => "name"])
+            ->add('firstName', TextareaType::class, ['label' => "first name"])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => "Confirmez le mot de passe"],
+                'first_options' => ['label' => 'Password'],
+                'second_options' => ['label' => "Password confirm"],
             ])
             ->add('submit', SubmitType::class)
 

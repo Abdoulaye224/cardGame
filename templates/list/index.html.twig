@@ -30,33 +30,33 @@
 
     <ul class="nav nav-tabs" id="myTab" role="tablist" style="width: 80%; margin-left: 30px; margin-top: 50px">
         <li class="nav-item">
-            <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="true">Liste des utilisateurs</a>
+            <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="true">Site Users</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="card-tab" data-toggle="tab" href="#cards" role="tab" aria-controls="profile" aria-selected="false">Liste des cartes</a>
+            <a class="nav-link" id="card-tab" data-toggle="tab" href="#cards" role="tab" aria-controls="profile" aria-selected="false">Cards List</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="cat-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="contact" aria-selected="false">Liste des categories</a>
+            <a class="nav-link" id="cat-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="contact" aria-selected="false">Categories List</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link container-create" id="createCard-tab" data-toggle="tab" href="#card" role="tab" aria-controls="contact" aria-selected="false">création de cartes</a>
+            <a class="nav-link container-create" id="createCard-tab" data-toggle="tab" href="#card" role="tab" aria-controls="contact" aria-selected="false">card creation</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link container-category" id="createCat-tab" data-toggle="tab" href="#category" role="tab" aria-controls="contact" aria-selected="false">création de catégories</a>
+            <a class="nav-link container-category" id="createCat-tab" data-toggle="tab" href="#category" role="tab" aria-controls="contact" aria-selected="false">category creation</a>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
             <div class="container">
                 <div Class="row justify-content-center">
-                    <h1>Liste des utilisateurs du site</h1>
+                    <h1>Site Users</h1>
                     <table Class="table">
                         <thead>
                         <tr>
-                            <th> prenom </th>
-                            <th> nom </th>
-                            <th> email </th>
-                            <th> date de naissance </th>
+                            <th> First name </th>
+                            <th> Name </th>
+                            <th> E-mail </th>
+                            <th> Birth Date</th>
                             {% if is_granted("ROLE_ADMIN") %}
                             <th>Action </th>
                             {% endif %}
@@ -71,15 +71,15 @@
                                 <td>{{ user.birthDate|date('d F Y') }}</td>
                                     <td>
                                         {% if is_granted("ROLE_ADMIN") %}
-                                        <a class="btn btn-info" href="{{ path('user_edit', {'id': user.id}) }}" style="">Editer</a>
-                                    <a class="btn btn-danger" href="{{ path('user_delete', {'id': user.id}) }}" style="">Supprimer</a>
+                                        <a class="btn btn-info" href="{{ path('user_edit', {'id': user.id}) }}" style="">Edit</a>
+                                    <a class="btn btn-danger" href="{{ path('user_delete', {'id': user.id}) }}" style="">Delete</a>
                                         {% endif %}
                                     </td>
                             </tr>
                         {% endfor %}
                     </table>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <button>  <a href="{{ path('user-create') }}"> Créer un nouvel utilisateur </a></button>
+                        <button>  <a href="{{ path('user-create') }}">Create a new user </a></button>
                     {% endif %}
                 </div>
             </div>
@@ -116,8 +116,8 @@
                                 </div>
                                 {% if is_granted("ROLE_ADMIN") %}
                                 <div class="card-footer" style="text-align: center;">
-                                    <a href="{{ path('card_edit', {'id': card.id}) }}" class="btn btn-info">Editer</a>
-                                    <a href="{{ path('card_delete', {'id': card.id}) }}" class="btn btn-danger">Supprimer</a>
+                                    <a href="{{ path('card_edit', {'id': card.id}) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ path('card_delete', {'id': card.id}) }}" class="btn btn-danger">delete</a>
                                 </div>
                                 {% endif %}
                             </div>
@@ -131,7 +131,7 @@
         <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="cat-tab">
             <div class="container">
                 <div Class="row justify-content-center">
-                    <h1>Liste des categories</h1>
+                    <h1>List of categories</h1>
                     <table Class="table">
                         <thead>
                         <tr>
@@ -145,8 +145,8 @@
                                 <td>{{ cat.name|upper }}</td>
                                 <td>
                                     {% if is_granted("ROLE_ADMIN") %}
-                                    <a href="{{ path('category_edit', {'id': cat.id}) }}" class="btn btn-info">Editer</a>
-                                        <a href="{{ path('category_delete', {'id': cat.id}) }}" class="btn btn-danger">Supprimer</a>
+                                    <a href="{{ path('category_edit', {'id': cat.id}) }}" class="btn btn-info">Edit</a>
+                                        <a href="{{ path('category_delete', {'id': cat.id}) }}" class="btn btn-danger">delete</a>
                                     {% endif %}
                                 </td>
                             </tr>

@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create Card{% endblock %}
+{% block title %}Card Creation{% endblock %}
 
 {% block body %}
 <main role="main" class="container">
 
     <div class="starter-template" style="margin-top:100px; text-align:center">
-        <h1>Carte create</h1>
+        <h1></h1>
     </div>
     {{ form_start(form, {'action': path(app.request.attributes.get('_route')), 'method': 'POST', 'enctype':'multipart/form-data'}) }}
     {{ form_end(form) }}
+
 </main>
 {% endblock %}
 

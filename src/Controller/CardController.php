@@ -68,7 +68,7 @@ class CardController extends AbstractController
 
             $this->entityManager->persist($card);
             $this->entityManager->flush();
-            $this->addFlash('success', "La carte a bien été crée");
+            $this->addFlash('success', "The card has been created");
 
             return $this->redirectToRoute('list');
         }
@@ -86,7 +86,7 @@ class CardController extends AbstractController
         $card = $this->cardRepository->find($id);
         $entityManager->remove($card);
         $entityManager->flush();
-        $this->addFlash('danger', "La carte a bien été supprimée");
+        $this->addFlash('danger', "The card has been deleted");
 
         return $this->redirectToRoute('list');
     }
@@ -101,7 +101,7 @@ class CardController extends AbstractController
         $entityManager->remove($card);
         $entityManager->flush();
 
-        $this->addFlash('danger', "La carte a bien été supprimée");
+        $this->addFlash('danger', "The card has been deleted");
 
         return $this->redirectToRoute('list');
     }
@@ -121,7 +121,7 @@ class CardController extends AbstractController
 
             $this->entityManager->persist($card);
             $this->entityManager->flush();
-            $this->addFlash('warning', "La carte a bien été modifiée");
+            $this->addFlash('warning', "The card has been modified");
 
             return $this->redirectToRoute('list');
         }

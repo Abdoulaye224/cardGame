@@ -1,30 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category list{% endblock %}
+{% block title %}list of categories{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 1000px; width: 100%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 6px 10px; }
-        .example-wrapper ul li {padding: 10px; margin: 10px; text-decoration: none;}
-        .example-wrapper ul li a{padding: 10px; margin: 3px; text-decoration: none; display: inline;}
-        .example-wrapper ul {text-decoration: none;}
-        .example-wrapper a {text-decoration: none;}
-    </style>
     {% include 'layout/navbar.html.twig'%}
     <div class="container">
         <div Class="row justify-content-center">
-            <h1>Liste des categories</h1>
+            <h1>list of categories</h1>
             <table Class="table">
                 <thead>
                 <tr>
                     <th> Id </th>
                     <th> name </th>
 
-                    <!--  <th colspan="3"> Action</th> -->
                 </tr>
                 </thead>
-                {# légèrement différent de php avec foreach userList as user #}
                 {% for cat in categories  %}
                     <tr>
                         <td>{{ cat.id }} </td>
@@ -32,7 +22,6 @@
                     </tr>
                 {% endfor %}
             </table>
-                <a href="{{ path('category-create') }}"> Créer un nouvelle categorie </a>
         </div>
     </div>
 {% endblock %}

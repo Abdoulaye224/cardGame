@@ -57,7 +57,7 @@ class CategoryController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $this->entityManager->persist($category);
             $this->entityManager->flush();
-            $this->addFlash('success', "La categorie a été crée");
+            $this->addFlash('success', "The category was created");
 
             return $this->redirectToRoute('list');
         }
@@ -75,7 +75,7 @@ class CategoryController extends AbstractController
         $category = $this->categoryRepository->find($id);
         $entityManager->remove($category);
         $entityManager->flush();
-        $this->addFlash('danger', "La categorie a bien été supprimée");
+        $this->addFlash('danger', "The category has been deleted");
 
         return $this->redirectToRoute('list');
     }
@@ -90,7 +90,7 @@ class CategoryController extends AbstractController
         $entityManager->remove($category);
         $entityManager->flush();
 
-        $this->addFlash('danger', "La categorie a bien été supprimée");
+        $this->addFlash('danger', "The category has been deleted");
 
         return $this->redirectToRoute('list');
     }
@@ -110,7 +110,7 @@ class CategoryController extends AbstractController
 
             $this->entityManager->persist($category);
             $this->entityManager->flush();
-            $this->addFlash('warning', "La categorie a bien été modifiée");
+            $this->addFlash('warning', "The category has been changed");
 
             return $this->redirectToRoute('list');
         }
