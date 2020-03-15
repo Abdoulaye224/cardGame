@@ -97,7 +97,7 @@
                                          style="background-image: url({{ asset('uploads/cards/' ~ card.image) }});"></div>
                                 </div>
 
-                                <div class="card-body">
+                                <div class="card-body" style="margin-top: -20px;">
                                     <h5 class="card-title">{{ card.title|upper }}</h5>
                                     <div class="grid-3 mt-2" style="margin-left: 50px;">
                                         <div class="card-info" style="background: #999999">
@@ -112,9 +112,9 @@
                                         <p class="card-info-desc">lifePoint</p>
                                         <p class="card-info-desc">Attack</p>
                                     </div>
+                                    <div style="text-align: center; margin-bottom: 20px; margin-top: -5px;">{{ card.getCategory.name|upper }}</div>
                                 </div>
-                                <div id="cat" style="text-align: center; margin-bottom: -10px;">{{ card.getCategory.name|upper }}</div>
-                                <div class="card-footer" style="margin-bottom: -15px; margin-top: 10px;">
+                                <div class="card-footer">
                                     <small class="text-muted">Carte crée par :  {% if card.getUser is not empty %}
                                             <span style="font-weight:bold;"><td>{{ card.getUser.lastName|upper }}</td></span>
                                         {% endif %}</small>
