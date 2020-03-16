@@ -23,6 +23,9 @@
     {% if deckCards is empty %}
         <h5>Your deck is empty.</h5>
     {% else %}
+        <div id="load" class="spinner-border text-info" role="status" style="display: none;">
+            <span class="sr-only">Loading...</span>
+        </div>
         <div class="row">
             {% for entity in deckCards %}
                 <div class="col-3 p-2">
@@ -117,12 +120,18 @@
         $('.choice-card').on('click', function () {
             var idCard = $(this).attr('data-id');
             var idDeck = '{{ deck.id }}';
+            $('#load').css('display', 'block');
             $.ajax({
                 type: "POST",
                 url: "{{ path('deck_add_card') }}",
                 data: {'idDeck': idDeck, 'idCard': idCard},
                 success: function (response) {
-                    $('#pageContent').load('{{ path('deck_manage', {'id': deck.id}) }}');
+                    console.log("add card succes");
+                    var url = "{{path('deck_manage', {'id': deck.id}) }}";
+                    console.log(url);
+                    $('html').load(url);
+                    $('#load').css('display', 'none');
+
                 }
             });
         });
@@ -132,7 +141,7 @@
                 type: "POST",
                 url: $(this).attr('data-link'),
                 success: function (response) {
-                    $('#pageContent').load('{{ path('deck_manage', {'id': deck.id}) }}', null, () => {
+                    $('html').load('{{ path('deck_manage', {'id': deck.id}) }}', null, () => {
                         hideLoader();
                     });
                 }
