@@ -2,6 +2,7 @@
 
 {% block title %}List Page{% endblock %}
 
+{% block head %} {% endblock %}
 {% block body %}
     <style>
         .card-group .card-body { margin: 1em auto; padding: 3px;}
@@ -26,8 +27,6 @@
 
         }
     </style>
-    {% include 'layout/navbar.html.twig'%}
-
     <ul class="nav nav-tabs" id="myTab" role="tablist" style="width: 80%; margin-left: 30px; margin-top: 50px">
         <li class="nav-item">
             <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="true">Site Users</a>

@@ -3,8 +3,6 @@
 {% block title %}Deck manage{% endblock %}
 
 {% block body %}
-    {% include 'layout/navbar.html.twig'%}
-
     <h3 class="mb-4">My deck</h3>
 
     {{ form_start(form, {'action': path(app.request.attributes.get('_route'),
